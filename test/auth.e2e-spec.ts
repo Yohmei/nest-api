@@ -1,9 +1,9 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthModule } from '../src/auth/auth.module';
 import * as request from 'supertest';
+import { AuthModule } from '../src/auth/auth.module';
 
-describe('AppController (e2e)', () => {
+describe('AuthController (e2e)', () => {
   let app: INestApplication;
 
   beforeEach(async () => {
@@ -25,7 +25,12 @@ describe('AppController (e2e)', () => {
   it('/auth/sign-up (POST)', () => {
     return request(app.getHttpServer())
       .post('/auth/sign-up')
+      .send({ email: '', password: 'pass' })
       .expect(201)
       .expect({ message: 'signed up', success: true });
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 });
