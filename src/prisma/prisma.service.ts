@@ -1,15 +1,15 @@
 import { PrismaClient } from '.prisma/client';
-import { Injectable } from '@nestjs/common';
+import { INestApplication, Injectable, OnModuleInit } from '@nestjs/common';
 
 @Injectable()
-export class PrismaService extends PrismaClient {
-  constructor() {
-    super({
-      datasources: {
-        db: {
-          url: 'mongodb+srv://nest-user:nest123@cluster0.oyp1x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-        },
-      },
+export class PrismaService extends PrismaClient implements OnModuleInit {
+  async onModuleInit() {
+    await this.$connect();
+  }
+
+  async enableShutdownHooks(app: INestApplication) {
+    this.$on('beforeExit', async () => {
+      await app.close();
     });
   }
 }
