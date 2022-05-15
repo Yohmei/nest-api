@@ -62,7 +62,7 @@ export class AuthService {
 
     const token = await this.jwt.signAsync(payload, {
       expiresIn: '15m',
-      privateKey: priv_key,
+      privateKey: priv_key.toString(),
     });
 
     return { access_token: token };
