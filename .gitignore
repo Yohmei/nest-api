@@ -1,8 +1,8 @@
 # compiled output
 /dist
 /node_modules
-/lib/jwt/id_rsa_priv.pem
-/lib/jwt/id_rsa_pub.pem
+**/id_rsa_priv.pem
+**/id_rsa_pub.pem
 
 # Logs
 logs

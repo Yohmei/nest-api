@@ -18,6 +18,8 @@ interface IAuthTest {
 
 describe('AuthController (e2e)', () => {
   let app: INestApplication;
+  process.env.test_env = 'local-test';
+  console.log(process.env.test_env);
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
