@@ -58,11 +58,7 @@ export class AuthService {
       email,
     };
 
-    let priv_key;
-
-    if (process.env.test_env === 'local-test')
-      priv_key = readFileSync(`${__dirname}/../lib/jwt/id_rsa_priv.pem`);
-    else priv_key = readFileSync(`${__dirname}/../lib/jwt/id_rsa_priv.pem`);
+    const priv_key = readFileSync(`${__dirname}/../lib/jwt/id_rsa_priv.pem`);
 
     const token = await this.jwt.signAsync(payload, {
       expiresIn: '15m',

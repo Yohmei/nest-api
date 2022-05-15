@@ -1,5 +1,4 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { readFileSync } from 'fs';
 import { AuthService } from './auth.service';
 import { AuthDto } from './dto';
 
